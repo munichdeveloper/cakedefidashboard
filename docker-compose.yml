@@ -1,17 +1,20 @@
-cakedashboard:
-  logging:
-    options:
-      max-size: "10m"
-      max-file: "1"
-  env_file:
-    - docker-compose.env
-  image: maven
-  restart: always
-  environment:
-    TZ: Europe/Berlin
-  expose:
-    - "8080"
-  volumes:
-    - ./:/home
-  working_dir: /home
-  command: bash -c "java -jar target/cakedashboard.jar"
+version: "3.3"
+
+services:
+  cakedashboard:
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "1"
+    env_file:
+      - docker-compose.env
+    image: maven
+    restart: always
+    environment:
+      TZ: Europe/Berlin
+    expose:
+      - "8080"
+    volumes:
+      - ./:/home
+    working_dir: /home
+    command: bash -c "java -jar target/cakedashboard.jar"
