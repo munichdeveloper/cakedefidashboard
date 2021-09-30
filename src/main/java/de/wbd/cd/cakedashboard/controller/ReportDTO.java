@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
-import java.util.HashMap;
+import java.util.Map;
 
 @Getter
 @Setter
@@ -14,5 +14,5 @@ public class ReportDTO {
     private BigDecimal totalLMRCollectedFiat;
 
     // total liquidity mining reward collected per coin (as per report stated)
-    private HashMap<String, BigDecimal> totalLMRCollected;
+    private Map<String, Double> totalLMRCollected;
 }

@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/report")
@@ -29,10 +31,17 @@ public class ReportController {
         ReportDTO reportDTO = new ReportDTO();
 
         BigDecimal lmrSum = transactions.stream()
-                .filter(transaction -> transaction.getOperation().contains("Liquidity mining reward USDT-DFI"))
+                .filter(transaction -> transaction.getOperation().contains("Liquidity mining reward"))
                 .map(Transaction::getAmount)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
         reportDTO.setTotalLMRCollectedFiat(lmrSum);
+
+        Map<String, Double> liquidity_mining_reward = transactions.stream()
+                .filter(transaction -> transaction.getOperation().contains("Liquidity mining reward"))
+                .collect(Collectors.groupingBy(transaction -> transaction.getOperation().replace("Liquidity mining reward","").trim(),
+                        Collectors.mapping(Transaction::getAmount, Collectors.summingDouble(BigDecimal::doubleValue))
+                ));
+        reportDTO.setTotalLMRCollected(liquidity_mining_reward);
 
         return reportDTO;
     }
