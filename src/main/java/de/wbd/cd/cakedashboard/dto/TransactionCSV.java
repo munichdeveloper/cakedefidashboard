@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-public class Transaction {
+public class TransactionCSV {
 
     @CsvBindByPosition(position = 0)
     @CsvDate(value = "yyyy-MM-dd'T'HH:mm:ssZZZZZ")
