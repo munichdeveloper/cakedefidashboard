@@ -1,6 +1,7 @@
 package de.wbd.cd.cakedashboard.repo;
 
 import de.wbd.cd.cakedashboard.entity.Transaction;
+import org.springframework.context.annotation.Profile;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -9,6 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
+@Profile("!h2")
 public interface TransactionRepository extends JpaRepository<Transaction, Long> {
 
     Optional<Transaction> findByReference(String reference);

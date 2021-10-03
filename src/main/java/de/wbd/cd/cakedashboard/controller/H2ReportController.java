@@ -4,7 +4,7 @@ import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
 import de.wbd.cd.cakedashboard.dto.TransactionCSV;
 import de.wbd.cd.cakedashboard.entity.Transaction;
-import de.wbd.cd.cakedashboard.service.TransactionService;
+import de.wbd.cd.cakedashboard.service.H2TransactionService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
@@ -26,11 +26,11 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/report")
-@Profile("!h2")
-public class ReportController {
+@Profile("h2")
+public class H2ReportController {
 
     @Autowired
-    private TransactionService transactionService;
+    private H2TransactionService transactionService;
 
     @Autowired
     private ModelMapper modelMapper;
