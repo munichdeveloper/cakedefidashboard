@@ -100,4 +100,8 @@ public class TransactionService {
         TypedQuery<Long> query = entityManager.createQuery(cq);
         return query.getSingleResult();
     }
+
+    public ArrayList<String> getDistinctOperations() {
+        return transactionRepository.findDistinctOperations();
+    }
 }

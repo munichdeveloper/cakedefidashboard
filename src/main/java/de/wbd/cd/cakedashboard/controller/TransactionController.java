@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+
 @RestController
 @RequestMapping("/tx")
 @Profile("!h2")
@@ -22,6 +24,11 @@ public class TransactionController {
         return transactionService.queryTransactions(
                 page, size, operation
         );
+    }
+
+    @GetMapping("/enumeration")
+    public ArrayList<String> getEnumeration() {
+        return transactionService.getDistinctOperations();
     }
 
 }

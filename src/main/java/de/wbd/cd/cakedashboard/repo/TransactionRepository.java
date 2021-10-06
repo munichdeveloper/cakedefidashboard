@@ -9,6 +9,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,4 +37,7 @@ public interface TransactionRepository extends PagingAndSortingRepository<Transa
     LMRewardsSummaryPrj getLMRewardsSummary();
 
     Page<Transaction> findAll(Pageable pageable);
+
+    @Query(value = "select distinct(operation) from transaction", nativeQuery = true)
+    ArrayList<String> findDistinctOperations();
 }
