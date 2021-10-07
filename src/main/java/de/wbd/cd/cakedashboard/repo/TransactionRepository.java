@@ -40,4 +40,7 @@ public interface TransactionRepository extends PagingAndSortingRepository<Transa
 
     @Query(value = "select distinct(operation) from transaction", nativeQuery = true)
     ArrayList<String> findDistinctOperations();
+
+    @Query(value = "select distinct(coin_asset) from transaction", nativeQuery = true)
+    ArrayList<String> findDistinctAssets();
 }

@@ -20,15 +20,21 @@ public class TransactionController {
 
     @GetMapping
     public QueryTransactionDTO queryTransactions(@RequestParam int page, @RequestParam int size,
-                                                 @RequestParam(required = false) String operation) {
+                                                 @RequestParam(required = false) String operation,
+                                                 @RequestParam(required = false) String asset) {
         return transactionService.queryTransactions(
-                page, size, operation
+                page, size, operation, asset
         );
     }
 
-    @GetMapping("/enumeration")
-    public ArrayList<String> getEnumeration() {
+    @GetMapping("/enumeration/operations")
+    public ArrayList<String> getDistinctOperations() {
         return transactionService.getDistinctOperations();
+    }
+
+    @GetMapping("/enumeration/assets")
+    public ArrayList<String> getDistinctAssets() {
+        return transactionService.getDistinctAssets();
     }
 
 }

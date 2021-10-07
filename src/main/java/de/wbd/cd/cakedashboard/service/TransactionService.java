@@ -45,7 +45,7 @@ public class TransactionService {
         return modelMapper.map(transactionRepository.getLMRewardsSummary(), LMRewardsSummary.class);
     }
 
-    public QueryTransactionDTO queryTransactions(int page, int size, String operation) {
+    public QueryTransactionDTO queryTransactions(int page, int size, String operation, String asset) {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<Transaction> cq = cb.createQuery(Transaction.class);
         Root<Transaction> root = cq.from(Transaction.class);
@@ -53,6 +53,11 @@ public class TransactionService {
 
         if (operation != null) {
             Predicate predicate = cb.equal(root.get("operation"), operation);
+            predicates.add(predicate);
+        }
+
+        if (asset != null) {
+            Predicate predicate = cb.equal(root.get("coinAsset"), asset);
             predicates.add(predicate);
         }
 
@@ -68,7 +73,7 @@ public class TransactionService {
 
         List<Transaction> resultList = query.getResultList();
 
-        long count = getCountForQueryTransactions(operation);
+        long count = getCountForQueryTransactions(operation, asset);
 
         QueryTransactionDTO queryTransactionDTO = new QueryTransactionDTO();
         queryTransactionDTO.setTransactions(resultList.stream().map(this::map).collect(Collectors.toList()));
@@ -80,7 +85,7 @@ public class TransactionService {
         return modelMapper.map(transaction, TransactionDTO.class);
     }
 
-    private long getCountForQueryTransactions(String operation) {
+    private long getCountForQueryTransactions(String operation, String asset) {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<Long> cq = cb.createQuery(Long.class);
         Root<Transaction> root = cq.from(Transaction.class);
@@ -89,6 +94,11 @@ public class TransactionService {
 
         if (operation != null) {
             Predicate predicate = cb.equal(root.get("operation"), operation);
+            predicates.add(predicate);
+        }
+
+        if (asset != null) {
+            Predicate predicate = cb.equal(root.get("coinAsset"), asset);
             predicates.add(predicate);
         }
 
@@ -103,5 +113,9 @@ public class TransactionService {
 
     public ArrayList<String> getDistinctOperations() {
         return transactionRepository.findDistinctOperations();
+    }
+
+    public ArrayList<String> getDistinctAssets() {
+        return transactionRepository.findDistinctAssets();
     }
 }
