@@ -1,5 +1,6 @@
 package de.wbd.cd.cakedashboard.service;
 
+import de.wbd.cd.cakedashboard.service.pricedata.TickerService;
 import org.junit.Ignore;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;

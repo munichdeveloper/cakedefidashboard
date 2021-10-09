@@ -1,9 +1,8 @@
-package de.wbd.cd.cakedashboard.service;
+package de.wbd.cd.cakedashboard.service.pricedata;
 
 import de.wbd.cd.cakedashboard.entity.PriceData;
 import de.wbd.cd.cakedashboard.repo.PriceDataRepository;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
@@ -16,7 +15,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import javax.annotation.PostConstruct;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;

@@ -1,13 +1,11 @@
 package de.wbd.cd.cakedashboard.service;
 
-import de.wbd.cd.cakedashboard.controller.QueryTransactionDTO;
-import de.wbd.cd.cakedashboard.controller.TransactionDTO;
-import de.wbd.cd.cakedashboard.dto.LMRewardsSummary;
+import de.wbd.cd.cakedashboard.dto.QueryTransactionDTO;
+import de.wbd.cd.cakedashboard.dto.TransactionDTO;
 import de.wbd.cd.cakedashboard.entity.Transaction;
 import de.wbd.cd.cakedashboard.repo.TransactionRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
@@ -22,7 +20,6 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-@Profile("!h2")
 public class TransactionService {
 
     @Autowired
@@ -41,9 +38,9 @@ public class TransactionService {
         }
     }
 
-    public LMRewardsSummary getLMRewardsSummary() {
-        return modelMapper.map(transactionRepository.getLMRewardsSummary(), LMRewardsSummary.class);
-    }
+//    public LMRewardsSummary getLMRewardsSummary() {
+//        return modelMapper.map(transactionRepository.getLMRewardsSummary(), LMRewardsSummary.class);
+//    }
 
     public QueryTransactionDTO queryTransactions(int page, int size, String operation, String asset) {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();

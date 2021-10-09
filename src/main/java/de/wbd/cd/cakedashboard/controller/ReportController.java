@@ -2,12 +2,12 @@ package de.wbd.cd.cakedashboard.controller;
 
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
+import de.wbd.cd.cakedashboard.dto.ReportDTO;
 import de.wbd.cd.cakedashboard.dto.TransactionCSV;
 import de.wbd.cd.cakedashboard.entity.Transaction;
 import de.wbd.cd.cakedashboard.service.TransactionService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Profile;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +26,6 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/report")
-@Profile("!h2")
 public class ReportController {
 
     @Autowired

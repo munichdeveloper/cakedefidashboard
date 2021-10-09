@@ -1,4 +1,4 @@
-package de.wbd.cd.cakedashboard.controller;
+package de.wbd.cd.cakedashboard.dto;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -1,5 +1,6 @@
-package de.wbd.cd.cakedashboard.controller;
+package de.wbd.cd.cakedashboard.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,7 +9,10 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
+@AllArgsConstructor
 public class LMRewardDTO {
+
+    BigDecimal sum_fiat;
 
     BigDecimal sum_amount;
 
@@ -16,5 +20,4 @@ public class LMRewardDTO {
 
     LocalDate date;
 
-    BigDecimal sum_fiat;
 }
